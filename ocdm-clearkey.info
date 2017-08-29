@@ -1,0 +1,5 @@
+Name: ocdm-clearkey
+Description: Linaro ClearKey GMP plugin
+Version: 1.0
+APIs: eme-decrypt-v7[org.w3.clearkey]
+Libraries:

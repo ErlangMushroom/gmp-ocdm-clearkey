@@ -1,0 +1,43 @@
+# -*- Mode: python; c-basic-offset: 4; indent-tabs-mode: nil; tab-width: 40 -*-
+# vim: set filetype=python:
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+SharedLibrary('ocdmi')
+
+EXPORTS += [
+    'include/cdmi.h',
+]
+
+SOURCES += [
+    'cdmi-stub/jsmn/jsmn.c',
+    'cdmi-stub/json_web_key.cpp',
+    'cdmi-stub/mediaenginesession.cpp',
+    'cdmi-stub/mediakeys.cpp',
+    'cdmi-stub/mediakeysession.cpp',
+]
+
+LOCAL_INCLUDES += [
+    'cdmi-stub/jsmn',
+    'include',
+]
+
+USE_STATIC_LIBS = True
+NO_VISIBILITY_FLAGS = True
+DISABLE_STL_WRAPPING = True
+DEFINES['MOZ_NO_MOZALLOC'] = True
+
+CXXFLAGS += [
+    '-fPIC',
+    '-Wno-reorder',
+    '-Wno-return-type',
+    '-Wno-shadow',
+    '-Wno-unused-function',
+    '-Wno-unused-variable',
+    '-include ctype.h',
+]
+
+OS_LIBS += [
+    'crypto',
+]

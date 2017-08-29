@@ -1,0 +1,40 @@
+# -*- Mode: python; c-basic-offset: 4; indent-tabs-mode: nil; tab-width: 40 -*-
+# vim: set filetype=python:
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+SharedLibrary('ocdm-clearkey')
+
+FINAL_TARGET = 'dist/bin/gmp-ocdm-clearkey/1.0'
+
+SOURCES += [
+    'CdmiHost.cpp',
+    'Decryptor.cpp',
+    'gmp-ocdm.cpp',
+    'GMPAdapter.cpp',
+]
+
+DIRS += [
+    'open-content-decryption-module-cdmi'
+]
+
+LOCAL_INCLUDES += [
+    '/dom/media/gmp',
+    '/mfbt',
+    '/xpcom/base',
+    '/xpcom/glue',
+]
+
+LOCAL_INCLUDES += [
+    'open-content-decryption-module-cdmi'
+]
+
+USE_STATIC_LIBS = True
+NO_VISIBILITY_FLAGS = True
+DISABLE_STL_WRAPPING = True
+DEFINES['MOZ_NO_MOZALLOC'] = True
+
+OS_LIBS += [
+    'crypto',
+]
